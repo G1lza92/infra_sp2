@@ -7,24 +7,39 @@
 Благодарные или возмущённые пользователи оставляют к произведениям текстовые отзывы и ставят произведению оценку в диапазоне от одного до десяти; из пользовательских оценок формируется усреднённая оценка произведения — рейтинг. На одно произведение пользователь может оставить только один отзыв.
 ## Установка:
 ### После клонирования репрозитория:
-* Установаите виртуальное окружение
-```python -m venv venv / python3 -m venv venv```
+* В директории infra создайте файл .env с переменными окружения для работы с базой данных:
+```
+DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
+DB_NAME=postgres # имя базы данных
+POSTGRES_USER=postgres # логин для подключения к базе данных
+POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
+DB_HOST=db # название сервиса (контейнера)
+DB_PORT=5432 # порт для подключения к БД
+```
 >
-* Активируйте виртуальное окружение
-```source venv/Scripts/activate / source venv/bin/activate```
+* Для запуска проекта выполните из директории с проектом команду
 >
-* Установите requirements
-```pip install -r requirements.txt```
+```sudo docker-compose up -d```
 >
-* Перейдите в api_yamdb
-```cd api_yamdb```
+* Затем выполните миграции в контейнере web
 >
-* Выполните миграции
-```python manage.py migrate```
+```sudo docker-compose exec web python manage.py migrate```
 >
-* Запуск сервера
-```python manage.py runserver```
+* Затем создайте суперпользователя
 >
+```sudo docker-compose exec web python manage.py createsuperuser```
+>
+* И соберите статику
+>
+```sudo docker-compose exec web python manage.py collectstatic --no-input```
+>
+* Вы можете загрузить данные из дампа в базу, разместив файл fixtures.json в папке с Dockerfile
+>
+```sudo docker-compose exec web python manage.py loaddata fixtures.json```
+>
+* Вы также можете создать дамп (резервную копию) базы
+>
+```sudo docker-compose exec web python manage.py dumpdata > fixtures.json```
 >
 ### Загрузка данных и CSV-файлов (./static/data/*.csv) 
 ```python manage.py load_data```
@@ -71,6 +86,11 @@
 * djangorestframework-simplejwt 4.7.2
 * drf-yasg 1.21.3
 * requests 2.26.0
+* PostgreSQL 13.0-alpine
+* Nginx 1.21.3-alpine
+* Gunicorn
+* Docker 20.10.21, build baeda1f
+* Docker-compose 3.8
 
 ## Групповой проекта выполенен командой №21 коготры №41 курса "Backend developer"
 * [Артем  Зимин](https://github.com/G1lza92)
