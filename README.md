@@ -57,9 +57,9 @@
 ```
 ### Более подробная документация со всеми адресами и доступными методами доступны по ссылкам, указанным ниже:
 >
-### Динамическая документация Swagger - [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
+### Динамическая документация Swagger - [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 >
-### Спецификация ReDoc - [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
+### Спецификация ReDoc - [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
 
 ## Использованные технологии/пакеты
 * [Python 3.7](https://github.com/python)
