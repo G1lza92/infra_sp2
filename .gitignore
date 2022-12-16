@@ -151,3 +151,6 @@ posts/static/
 
 #env файл
 infra/.env
+
+#база данных
+infra/base/
