@@ -7,31 +7,15 @@
 Благодарные или возмущённые пользователи оставляют к произведениям текстовые отзывы и ставят произведению оценку в диапазоне от одного до десяти; из пользовательских оценок формируется усреднённая оценка произведения — рейтинг. На одно произведение пользователь может оставить только один отзыв.
 ## Установка:
 ### После клонирования репрозитория:
-* В директории infra создайте файл .env с переменными окружения для работы с базой данных:
-```
-DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
-DB_NAME=postgres # имя базы данных
-POSTGRES_USER=postgres # логин для подключения к базе данных
-POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
-DB_HOST=db # название сервиса (контейнера)
-DB_PORT=5432 # порт для подключения к БД
-```
+* В директории infra создайте файл .env с переменными окружения для работы с базой данных (Образец файла .env.sample)
 >
 * Для запуска проекта выполните из директории с проектом команду
 >
 ```sudo docker-compose up -d```
 >
-* Затем выполните миграции в контейнере web
->
-```sudo docker-compose exec web python manage.py migrate```
->
 * Затем создайте суперпользователя
 >
 ```sudo docker-compose exec web python manage.py createsuperuser```
->
-* И соберите статику
->
-```sudo docker-compose exec web python manage.py collectstatic --no-input```
 >
 * Вы можете загрузить данные из дампа в базу, разместив файл fixtures.json в папке с Dockerfile
 >
@@ -73,24 +57,24 @@ DB_PORT=5432 # порт для подключения к БД
 ```
 ### Более подробная документация со всеми адресами и доступными методами доступны по ссылкам, указанным ниже:
 >
-### Динамическая документация Swagger - [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/)
+### Динамическая документация Swagger - [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 >
-### Спецификация ReDoc - [http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
+### Спецификация ReDoc - [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
 
 ## Использованные технологии/пакеты
-* Python 3.7
-* Django 2.2.16
-* PyJWT 2.1.0
-* django-filter 2.4.0
-* djangorestframework 3.12.4
-* djangorestframework-simplejwt 4.7.2
-* drf-yasg 1.21.3
-* requests 2.26.0
-* PostgreSQL 13.0-alpine
-* Nginx 1.21.3-alpine
-* Gunicorn
-* Docker 20.10.21, build baeda1f
-* Docker-compose 3.8
+* [Python 3.7](https://github.com/python)
+* [Django 2.2.16](https://github.com/django/django)
+* [PyJWT 2.1.0](https://github.com/jpadilla/pyjwt)
+* [django-filter 2.4.0](https://github.com/carltongibson/django-filter)
+* [djangorestframework 3.12.4](https://github.com/encode/django-rest-framework)
+* [djangorestframework-simplejwt 4.7.2](https://github.com/jazzband/djangorestframework-simplejwt)
+* [drf-yasg 1.21.3](https://github.com/axnsan12/drf-yasg)
+* [requests 2.26.0](https://github.com/psf/requests)
+* [PostgreSQL 13.0-alpine](https://github.com/postgres/postgres)
+* [Nginx 1.21.3-alpine](https://www.nginx.com/)
+* [Gunicorn](https://github.com/benoitc/gunicorn)
+* [Docker 20.10.21, build baeda1f](https://github.com/docker)
+* [Docker-compose 3.8](https://github.com/docker)
 
 ## Групповой проекта выполенен командой №21 коготры №41 курса "Backend developer"
 * [Артем  Зимин](https://github.com/G1lza92)
