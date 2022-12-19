@@ -1,11 +1,16 @@
 import os
 from datetime import timedelta
+from distutils.util import strtobool
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.getenv('SECRET_KEY', default='any_key')
+SECRET_KEY = os.getenv('SECRET_KEY', default='kf9)cu_0d6s5#tz!c*m2h#e1lc&n97!$*eu=ng!fco!gy)noeb')
 
-DEBUG = os.getenv('DEBUG', default=False)
+DEBUG = strtobool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = ['*']
 
