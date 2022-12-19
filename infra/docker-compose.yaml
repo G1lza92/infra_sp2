@@ -6,15 +6,11 @@ services:
     volumes:
       - ./base/:/var/lib/postgresql/data/
     env_file:
-      - ./.env
+      - ../.env
   web:
     build:
       context: ../api_yamdb/
       dockerfile: ./Dockerfile
-    command: >
-      sh -c "python manage.py collectstatic --noinput &&
-             python manage.py migrate &&
-             gunicorn api_yamdb.wsgi:application --bind 0:8000"
     restart: always
     volumes:
       - static_value:/app/static/
@@ -22,7 +18,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env
+      - ../.env
 
   nginx:
     image: nginx:1.21.3-alpine
